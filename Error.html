@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>System Failure</title>
+    <style>
+        body {
+            background-color: black;
+            color: #00ff00;
+            font-family: 'Courier New', monospace;
+            padding: 40px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .glitch {
+            color: red;
+            font-size: 2em;
+            font-weight: bold;
+            position: relative;
+            text-align: center;
+            animation: flicker 1s infinite;
+        }
+
+        .glitch::before,
+        .glitch::after {
+            content: attr(data-text);
+            position: absolute;
+            left: 0;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .glitch::before {
+            top: -1px;
+            color: #0ff;
+            z-index: -1;
+            animation: glitchTop 0.3s infinite linear alternate-reverse;
+        }
+
+        .glitch::after {
+            top: 1px;
+            color: #f0f;
+            z-index: -1;
+            animation: glitchBottom 0.3s infinite linear alternate-reverse;
+        }
+
+        @keyframes glitchTop {
+            0% { transform: translate(0, 0); }
+            20% { transform: translate(1px, -1px); }
+            40% { transform: translate(-1px, 0); }
+            60% { transform: translate(1px, -1px); }
+            80% { transform: translate(0, -1px); }
+            100% { transform: translate(-1px, 1px); }
+        }
+
+        @keyframes glitchBottom {
+            0% { transform: translate(0, 0); }
+            20% { transform: translate(0px, -1px); }
+            40% { transform: translate(1px, 0); }
+            60% { transform: translate(-1px, -1px); }
+            80% { transform: translate(0, 1px); }
+            100% { transform: translate(1px, -1px); }
+        }
+
+        @keyframes flicker {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.4; }
+            60% { opacity: 1; }
+            70% { opacity: 0.6; }
+            80% { opacity: 1; }
+        }
+
+        .hacking {
+            font-size: 1.5em;
+            text-align: center;
+            margin: 30px 0;
+            animation: flicker 1s infinite;
+        }
+
+        .code {
+            white-space: pre-wrap;
+            background: #111;
+            padding: 20px;
+            border-radius: 10px;
+            border: 2px solid #0f0;
+            font-size: 0.95em;
+            animation: flicker 2s infinite alternate;
+            color: #0f0;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: repeating-linear-gradient(
+                to bottom,
+                rgba(0, 255, 0, 0.05),
+                rgba(0, 255, 0, 0.05) 1px,
+                transparent 2px,
+                transparent 4px
+            );
+            pointer-events: none;
+            z-index: 10;
+        }
+    </style>
+</head>
+<body>
+    <div class="glitch" data-text="Error! Your entire filesystem has been deleted!">
+        Error! Your entire filesystem has been deleted!
+    </div>
+
+    <div class="hacking">Hacking in progress...</div>
+
+    <div id="codeBox" class="code"></div>
+
+    <script>
+        const codeText = `
+4r9af02#$$@!*@#u89afh
+a9dufh38rfa*#@!_U@!
+XZ12984hfa0872304haf
+SYSTEM32\\DELETED\\ALL
+0x00FFAB45 :: EXECUTE
+$&@^(@#&$HAD9fh23HF
+__bootsector_erased__
+!!!CRITICAL_FAILURE!!!
+[####################] 100%
+Dumping memory...
+0000: A3 7F 4B 88 29 FA 00 00
+0008: DE AD BE EF FA CE FE ED
+0010: BA D0 0D C0 FF EE 12 34
+0018: 90 90 90 90 90 90 90 90
+Virus.exe executed successfully.
+Goodbye.
+`;
+
+        const codeBox = document.getElementById("codeBox");
+        let i = 0;
+
+        function typeEffect() {
+            if (i < codeText.length) {
+                const char = codeText[i] === "\n" ? "<br>" : codeText[i];
+                codeBox.innerHTML += char;
+                i++;
+                setTimeout(typeEffect, 30); // adjust typing speed here (ms per character)
+            }
+        }
+
+        window.onload = typeEffect;
+    </script>
+</body>
+</html>
+
