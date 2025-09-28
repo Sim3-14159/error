@@ -1,12 +1,12 @@
 # ${\\color{orange}{\text{ERROR}}}$
 Filesystem deletion in progress at [Sim3-14159.github.io/error](https://Sim3-14159.github.io/error).
 
-(A joke)
+(A joke) 
 
 ---
 <br>
 
-### If you want to scare somebody, run one of these commands ${\\color{grey}{\text{(Don't worry, these commands are harmless)}}}$:
+## If you want to scare somebody, run one of these commands: <sub><sup> ${\\color{grey}{\text{(Don't worry, these commands are harmless)}}}$ </sub></sup>
 
 ##### Windows Powershell
 ```powershell
